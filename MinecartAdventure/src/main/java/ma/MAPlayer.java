@@ -22,9 +22,11 @@ public class MAPlayer implements Listener{
 	Player player;
 	private int coin = 10;
 	Plugin plugin;
-	public MAPlayer(Player player, Plugin plugin) {
+	MAGame mag;
+	public MAPlayer(Player player, Plugin plugin, MAGame mag) {
 		this.player = player;
 		this.plugin = plugin;
+		this.mag = mag;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 		earnMoney();
 		displayCoin();
@@ -42,7 +44,7 @@ public class MAPlayer implements Listener{
 		if(e.getPlayer() == player) {
 			if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				if(player.getInventory().getItemInMainHand().getType() == Material.EMERALD) {
-					new MAShop(player);
+					new MAShop(player, plugin, mag);
 				}
 			}
 		}

@@ -27,5 +27,8 @@ public class MAData {
 		}
 		return result;
 	}
+	public static int getPrice(int index) {
+		return (int)shopItem[index][1];
+	}
 
 }
