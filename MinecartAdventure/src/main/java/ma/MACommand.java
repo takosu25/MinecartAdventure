@@ -21,7 +21,10 @@ public class MACommand implements CommandExecutor {
 			mag = new MAGame(plugin);
 		}else if(args[0].equals("join")) {
 			if(sender instanceof Player) {
-				mag.addPlayers((Player)sender);
+				Player player = (Player)sender;
+				for(Player p:player.getWorld().getPlayers()) {
+					mag.addPlayers(p);
+				}
 			}
 		}else if(args[0].equals("start")) {
 			mag.start();
