@@ -1,7 +1,14 @@
 package ma;
 
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -11,17 +18,36 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 
 
-public class MAPlayer {
+public class MAPlayer implements Listener{
 	Player player;
 	private int coin = 10;
 	Plugin plugin;
 	public MAPlayer(Player player, Plugin plugin) {
 		this.player = player;
 		this.plugin = plugin;
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 		earnMoney();
 		displayCoin();
-		
+		player.setHealth(20);
+		player.setFoodLevel(20);
+		player.getInventory().clear();
+		ItemStack shop = new ItemStack(Material.EMERALD);
+		ItemMeta mshop = shop.getItemMeta();
+		mshop.setDisplayName("ショップ");
+		shop.setItemMeta(mshop);
+		player.getInventory().addItem(shop);
 	}
+	@EventHandler
+	public void onRightClick(PlayerInteractEvent e) {
+		if(e.getPlayer() == player) {
+			if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				if(player.getInventory().getItemInMainHand().getType() == Material.EMERALD) {
+					//TODO shopひらくしょりつくってねー
+				}
+			}
+		}
+	}
+	
 	
 	
 	
@@ -41,6 +67,7 @@ public class MAPlayer {
 			}
 		}.runTaskTimer(plugin, 0, 5);
 	}
+	
 	//getter&setter
 	public int getCoin() {
 		return coin;
