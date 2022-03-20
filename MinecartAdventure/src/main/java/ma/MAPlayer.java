@@ -42,7 +42,7 @@ public class MAPlayer implements Listener{
 		if(e.getPlayer() == player) {
 			if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				if(player.getInventory().getItemInMainHand().getType() == Material.EMERALD) {
-					//TODO shopひらくしょりつくってねー
+					new MAShop(player);
 				}
 			}
 		}
