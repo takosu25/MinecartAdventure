@@ -1,0 +1,8 @@
+name: MinecartAdventure
+version: 0.0.1
+main: ma.MAMain
+commands:
+  ma:
+    description: Command no setumei
+    usage: /<command>
+    default: true
