@@ -18,7 +18,7 @@ public class MACommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {
 		if(args[0].equals("newgame")) {
-			mag = new MAGame();
+			mag = new MAGame(plugin);
 		}else if(args[0].equals("join")) {
 			if(sender instanceof Player) {
 				mag.addPlayers((Player)sender);
