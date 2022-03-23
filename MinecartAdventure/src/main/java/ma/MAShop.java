@@ -3,6 +3,7 @@ package ma;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -25,8 +26,11 @@ public class MAShop implements Listener{
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 		
 	}
+	
+	@EventHandler
 	public void onLeftClick(InventoryClickEvent e) {
 		if(e.getWhoClicked() == player) {
+			e.setCancelled(true);
 			if(e.getCurrentItem() != null) {
 				if(e.getCurrentItem().getType() != Material.AIR) {
 					if(e.getRawSlot() < 54) {
